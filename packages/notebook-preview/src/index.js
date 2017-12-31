@@ -81,7 +81,7 @@ export class NotebookPreview extends React.PureComponent<Props, State> {
     // Propagated from the hide_(all)_input nbextension
     const allSourceHidden = notebook.getIn(["metadata", "hide_input"], false);
 
-    const language = notebook.getIn(
+    const mode = notebook.getIn(
       ["metadata", "language_info", "codemirror_mode", "name"],
       notebook.getIn(
         ["metadata", "language_info", "codemirror_mode"],
@@ -120,7 +120,7 @@ export class NotebookPreview extends React.PureComponent<Props, State> {
                     />
                     <Input hidden={sourceHidden}>
                       <Prompt />
-                      <Editor language={language} theme={this.props.theme}>
+                      <Editor mode={mode} theme={this.props.theme}>
                         {source}
                       </Editor>
                     </Input>

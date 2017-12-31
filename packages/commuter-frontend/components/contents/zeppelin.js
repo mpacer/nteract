@@ -264,7 +264,7 @@ const Paragraph = props => {
 
   return (
     <div>
-      <Editor language={lang}>{props.text}</Editor>
+      <Editor mode={lang}>{props.text}</Editor>
       <div
         style={{
           paddingBottom: "10px",

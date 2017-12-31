@@ -26,7 +26,8 @@ export type CellProps = {
   id: string,
   cellFocused: string,
   editorFocused: string,
-  language: string,
+  language?: string,
+  mode?: string | Object,
   running: boolean,
   theme: string,
   pagers: ImmutableList<any>,
@@ -117,7 +118,7 @@ export default class CellView extends React.Component<CellProps, *> {
                   completion
                   id={this.props.id}
                   value={this.props.cell.get("source")}
-                  language={this.props.language}
+                  mode={this.props.mode}
                   cellFocused={cellFocused}
                   editorFocused={editorFocused}
                   theme={this.props.theme}
@@ -172,7 +173,7 @@ export default class CellView extends React.Component<CellProps, *> {
           >
             <Editor>
               <CodeMirror
-                language="markdown"
+                mode="markdown"
                 id={this.props.id}
                 value={this.props.cell.get("source")}
                 theme={this.props.theme}

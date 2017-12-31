@@ -55,19 +55,19 @@ type Props = {
   kernelSpecDisplayName: string,
   executionState: string,
   models: ImmutableMap<string, any>,
-  language: string
+  mode?: string | Object
 };
 
 export function getLanguageMode(metadata: ImmutableMap<*, *>): string {
   // First try codemirror_mode, then name, and fallback to 'text'
-  const language = metadata.getIn(
+  const mode = metadata.getIn(
     ["language_info", "codemirror_mode", "name"],
     metadata.getIn(
       ["language_info", "codemirror_mode"],
       metadata.getIn(["language_info", "name"], "text")
     )
   );
-  return language;
+  return mode;
 }
 
 const mapStateToProps = (state: Object) => ({
@@ -83,7 +83,7 @@ const mapStateToProps = (state: Object) => ({
   stickyCells: state.document.get("stickyCells"),
   executionState: state.app.get("executionState"),
   models: state.comms.get("models"),
-  language: getLanguageMode(
+  mode: getLanguageMode(
     state.document.getIn(["notebook", "metadata"], ImmutableMap())
   )
 });
@@ -98,7 +98,7 @@ export class NotebookApp extends React.PureComponent<Props> {
   static defaultProps = {
     displayOrder,
     transforms,
-    language: "python"
+    mode: "python"
   };
 
   static contextTypes = {
@@ -217,7 +217,7 @@ export class NotebookApp extends React.PureComponent<Props> {
         id={id}
         cellFocused={this.props.cellFocused}
         editorFocused={this.props.editorFocused}
-        language={this.props.language}
+        mode={this.props.mode}
         running={running}
         theme={this.props.theme}
         pagers={this.props.cellPagers.get(id)}

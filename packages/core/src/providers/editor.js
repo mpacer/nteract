@@ -20,7 +20,7 @@ type Props = {
   channels: any,
   cursorBlinkRate: number,
   executionState: "idle" | "starting" | "not connected",
-  language: string
+  mode?: string | Object
 };
 
 function mapStateToProps(state: Object): Object {

@@ -225,7 +225,7 @@ export class Prompt extends React.Component<PromptProps> {
 type EditorChildren = string | React.Element<any> | Array<EditorChildren>;
 
 export type EditorProps = {
-  language: string,
+  mode?: string | Object,
   children: EditorChildren,
   className?: string,
   theme: "light" | "dark"
@@ -234,7 +234,7 @@ export type EditorProps = {
 export class Editor extends React.Component<EditorProps> {
   static defaultProps = {
     children: "",
-    language: "python",
+    mode: "python",
     className: "input",
     theme: "light"
   };
@@ -245,7 +245,11 @@ export class Editor extends React.Component<EditorProps> {
       return (
         <SyntaxHighlighter
           style={syntax}
-          language={this.props.language}
+          language={
+            typeof this.props.mode === Object
+              ? this.props.mode.name
+              : this.props.mode
+          }
           className={this.props.className}
           customStyle={{
             padding: "10px 0px 10px 10px",

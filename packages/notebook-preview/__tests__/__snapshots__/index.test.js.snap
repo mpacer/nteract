@@ -56,7 +56,7 @@ exports[`Notebook accepts an Immutable.List of cells 1`] = `
         />
         <Editor
           className="input"
-          language="ipython"
+          mode="ipython"
           theme="light"
         >
           import IPython
@@ -246,7 +246,7 @@ exports[`Notebook accepts an Object of cells 1`] = `
         />
         <Editor
           className="input"
-          language="ipython"
+          mode="ipython"
           theme="light"
         >
           import IPython
